@@ -3,8 +3,8 @@
  * Handles game logic including turn management, board state,
  * move validation, and winner detection.
  * 
- * @author Elif Bozkurt
  * @author Metehan Kutay
+ * @author Elif Bozkurt
  */
 public class Game {
     private char[][] board;
@@ -38,7 +38,7 @@ public class Game {
      * Player 1 is 'X', Player 2 is 'O'.
      */
     public Game() {
-        this(new Player("Player 1", 'X', false), new Player("Player 2", 'O', false));
+        this(new Player("Player 1", 'X'), new Player("Player 2", 'O'));
     }
 
     /**
@@ -68,6 +68,10 @@ public class Game {
      */
     public int getWinner() {
         return winner;
+    }
+
+    public Player[] getPlayers() {
+        return players;
     }
 
     /**

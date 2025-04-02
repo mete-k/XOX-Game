@@ -9,39 +9,26 @@
 public class Player {
     private final String name;
     private final char mark;
-    private final boolean isComputer;
 
     /**
      * Constructs a Player object with the given name, mark, and computer status.
      *
      * @param name        The name of the player.
      * @param mark        The mark (e.g., 'X' or 'O') associated with the player.
-     * @param isComputer  Whether the player is a computer-controlled player.
      */
-    public Player(String name, char mark, boolean isComputer) {
+    public Player(String name, char mark) {
         this.name = name;
         this.mark = mark;
-        this.isComputer = isComputer;
     }
 
     /**
      * Default constructor for Player. Creates a computer player with no name and null mark.
      */
     public Player() {
-        this(null, '\0', true);
+        this(null, '\0');
     }
 
     // Getters
-
-    /**
-     * Returns whether this player is a computer.
-     *
-     * @return {@code true} if the player is a computer; {@code false} otherwise.
-     */
-    public boolean isComputer() {
-        return isComputer;
-    }
-
     /**
      * Gets the name of the player.
      *
