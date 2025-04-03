@@ -22,6 +22,9 @@ public class GameFrame extends JFrame {
     private JLabel statusLabel;
     private JButton resetButton;
 
+    /**
+     * Constructs a GameFrame, initializes the game board, and sets up the UI.
+     */
     public GameFrame() {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setTitle("Tic Tac Toe");
@@ -48,6 +51,10 @@ public class GameFrame extends JFrame {
         this.setVisible(true);
     }
 
+    /**
+     * Initializes the Tic-Tac-Toe board panel with a 3x3 grid of buttons.
+     * Each button represents a cell in the game board.
+     */
     private void initBoardPanel() {
         this.boardPanel = new JPanel();
         this.buttons = new JButton[3][3];
@@ -66,6 +73,8 @@ public class GameFrame extends JFrame {
                 b.addActionListener(elfim -> {
                     if (game.takeTurn(row, col)) {
                         b.setText(Character.toString(game.getMark(row, col)));
+                        if (game.getMark(row, col) == 'X') statusLabel.setText("Player 2's Turn");
+                        else if (game.getMark(row, col) == 'O') statusLabel.setText("Player 1's Turn");
 
                         if (game.getWinner() != -1)
                             endGame();
@@ -82,19 +91,31 @@ public class GameFrame extends JFrame {
         }   
     }
 
+    /**
+     * Ends the game by disabling all buttons and displaying the result.
+     * If a player wins, a message is shown. If it's a draw, a draw message appears.
+     */
     private void endGame() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 buttons[i][j].setEnabled(false);
             }
         }
-        if (game.getWinner() > 0)
-            JOptionPane.showMessageDialog(null, "Player " + game.getWinner() + " wins");
-        else 
-            JOptionPane.showMessageDialog(null,"Draw");
-        statusLabel.setText("Restart Game");
+
+        // Display the winner or draw message
+        if (game.getWinner() > 0) {
+            statusLabel.setText("Player " + game.getWinner() + " won!");
+            JOptionPane.showMessageDialog(null, "Player " + game.getWinner() + " wins!");
+        } else {
+            JOptionPane.showMessageDialog(null,"Draw!");
+        }
     }
 
+    /**
+     * The main method that launches the Tic-Tac-Toe game.
+     * 
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
         new GameFrame();
     }
